@@ -28,8 +28,10 @@ struct TimeStampDCF77
 	uint8_t minute;
     uint8_t hour;
     uint8_t day;
+    uint8_t weekday;
     uint8_t month;
     uint8_t year;
+    uint8_t A1; //Change from CET to CEST or vice-versa.
     uint8_t transmitter_fault;	//Only relevant with very good signal
 };
 

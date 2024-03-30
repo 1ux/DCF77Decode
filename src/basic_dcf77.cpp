@@ -94,6 +94,7 @@ static int checkParity(uint8_t *bitArray)
     //DCF77 uses even parity
     uint8_t minuteParity = 0;
     uint8_t hourParity = 0;
+    uint8_t dateParity = 0;
 
     // Calculate parity for minute
     for (uint8_t i = 21; i < 28; ++i)
@@ -106,9 +107,14 @@ static int checkParity(uint8_t *bitArray)
     {
         hourParity ^= bitArray[i];
     }
+    // Calculate parity for date
+    for (uint8_t i = 36; i < 58; ++i)
+    {
+        dateParity ^= bitArray[i];
+    }
 
     // Check the parity bits for minutes and hours
-    if ((minuteParity != bitArray[28]) || (hourParity != bitArray[35]))
+    if ((minuteParity != bitArray[28]) || (hourParity != bitArray[35])|| (dateParity != bitArray[58]))
     {
         return ERROR_INVALID_VALUE; // Parity error
     }
@@ -131,9 +137,11 @@ int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time)
     time->hour = BitScaleDCF77(bitArray + 29, 6);
     time->minute = BitScaleDCF77(bitArray + 21, 7);
     time->day = BitScaleDCF77(bitArray + 36, 6);
+    time->weekday = BitScaleDCF77(bitArray + 42, 3);
     time->month = BitScaleDCF77(bitArray + 45, 5);
     time->year = BitScaleDCF77(bitArray + 50, 8);
     time->transmitter_fault = BitScaleDCF77(bitArray + 15, 1);
+    time->A1 = BitScaleDCF77(bitArray + 16, 1);
 
     if(checkParity(bitArray)==ERROR_INVALID_VALUE)
     {

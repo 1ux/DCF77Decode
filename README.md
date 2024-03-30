@@ -136,8 +136,12 @@ void loop()
       Serial.println(buffer);
       snprintf(buffer,sizeof(buffer),"%02d.%02d.20%02d\n",time.day,time.month,time.year);
       Serial.println(buffer);
+      snprintf(buffer, sizeof(buffer), "Weekday: %02d\n", time.weekday);
+      Serial.println(buffer);
       if(time.transmitter_fault!=SUCCESS)
         Serial.println("Either their signal is noisy, or something is wrong in Germany.");
+      else if(time.A1)
+        Serial.println("Time change is coming up. (CET/CEST)");
     }
     else Serial.println("No doubt, signal unstable, please readjust antenna.");
   }
