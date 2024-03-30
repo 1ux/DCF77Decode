@@ -28,13 +28,21 @@ Image source: [Physikalisch-Technische Bundesanstalt](https://www.ptb.de/cms/ptb
 Take a look at the following example, this is a complete DCF77 bit string:
 
 00111010000010100010110010011100110110010110111000001001001
+
                      ^^^^^^^
+
                      |
+
                      Minutes Bits(21 to 27)
 
 The 7 relevant bits for minute decoding are marked. If you start counting from 0 non left to right, the area marked starts at the 21st digit.
-If you now relate the significance of the bits to the above graphic, the following calculation results: `(1*1)+(0*2)+(0*4)+(1*8)+(0*10)+(0*20)+(1*40)=49`
+If you now relate the significance of the bits to the above graphic, the following calculation results:
+
+`(1*1)+(0*2)+(0*4)+(1*8)+(0*10)+(0*20)+(1*40)=49`
+
 Applying this principle to the decoding of the hour, you get 19:49
+
+
 An English documentation about DCF77 can be found [here](https://www.cyber-sciences.com/wp-content/uploads/2019/01/TN-103_DCF77.pdf).
 
 ## Hardware Setup
