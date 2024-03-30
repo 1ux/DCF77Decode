@@ -26,14 +26,13 @@ This is how the end of a minute is indicated. If you interpret all 59 pulses as 
 Image source: [Physikalisch-Technische Bundesanstalt](https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-442/verbreitung-der-gesetzlichen-zeit/dcf77/zeitcode.html)
 
 Take a look at the following example, this is a complete DCF77 bit string:
-
+```
 00111010000010100010110010011100110110010110111000001001001
-
                      ^^^^^^^
-
                      |
 
                      Minutes Bits(21 to 27)
+```
 
 The 7 relevant bits for minute decoding are marked. If you start counting from 0 non left to right, the area marked starts at the 21st digit.
 If you now relate the significance of the bits to the above graphic, the following calculation results:
@@ -49,9 +48,7 @@ An English documentation about DCF77 can be found [here](https://www.cyber-scien
 
 For this library you need DCF77 receiver module that demodulates the AM signal from Frankfurt, Germany.
 
-Please note that in addition to [DCF77](https://de.wikipedia.org/wiki/DCF77) there are other time signal transmitters in other countries, see e.g: [WWVB in USA](https://en.wikipedia.org/wiki/WWV_(radio_station)), [MSF in Great Britain](https://en.wikipedia.org/wiki/Time_from_NPL_(MSF)), [JJY in Japan](https://en.wikipedia.org/wiki/JJY), [BPM in China](https://en.wikipedia.org/wiki/BPM_(time_service)), [RWM in Russia](https://en.wikipedia.org/wiki/RWM).
-
-
+Please note that in addition to [DCF77](https://de.wikipedia.org/wiki/DCF77) there are other time signal transmitters in other countries, see e.g: [WWVB in USA](https://en.wikipedia.org/wiki/WWV_(radio_station)), [MSF in Great Britain](https://en.wikipedia.org/wiki/Time_from_NPL_(MSF)), [JJY in Japan](https://en.wikipedia.org/wiki/JJY), [BPM in China](https://en.wikipedia.org/wiki/BPM_(time_service)), [RWM in Russia](https://en.wikipedia.org/wiki/RWM).<br>
 If you have good reception or a high quality receiver, you can connect it directly to your microcontroller. I had to give the DCF-3850N-800 a little help with filtering.
 
 The following components can be seen in my example:
@@ -193,7 +190,8 @@ As a last resort, you can experiment with the following defines in the basic_dcf
 #define min_BIT_0_DURATION 20000
 ```
 
-For external debugging of DCF77 bit strings you can use my bash scripts under Linux/Unix in the ../examples folder. If you pass such a string to dcf77_string_decode.sh you will get the decoding on the command line. Since it is difficult to count bits to find out what value they have (1 or 0), you can use extract_dcf77_BIT.sh
+For external debugging of DCF77 bit strings you can use my bash scripts under Linux/Unix in the ../examples folder.<br>
+If you pass such a string to dcf77_string_decode.sh you will get the decoding on the command line. Since it is difficult to count bits to find out what value they have (1 or 0), you can use extract_dcf77_BIT.sh
 
 
 ## Thanks to:
