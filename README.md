@@ -87,12 +87,10 @@ char buffer[40];      //A cache for a pretty and formatted text output
 
 void setup()
 {
-  //If necessary, activate the debug output for DCF77 in DebugProject.h.
-	Serial.begin(115200);
+  Serial.begin(115200);
   delay(7000);    //Depending on hardware, it take some time until the DCF77 module is ready
   setupDCF77(12); //set MCU digital input Pin 12 for DCF77
 }
-
 
 void loop()
 {
@@ -104,10 +102,10 @@ void loop()
     {
       snprintf(buffer,sizeof(buffer),"It is now %02d:%02d o'clock",time.hour,time.minute);
       Serial.println(buffer);
-      snprintf(buffer,sizeof(buffer),"Today: %02d.%02d.20%02d\n",time.day,time.month,time.year);
+      snprintf(buffer,sizeof(buffer),"Today:%02d.%02d.20%02d\n",time.day,time.month,time.year);
       Serial.println(buffer);
       if(time.transmitter_fault!=SUCCESS)
-        Serial.println("Either their signal is very noisy, or something is wrong in Germany.");
+        Serial.println("Either their signal is noisy, or something is wrong in Germany.");
     }
     else Serial.println("No doubt, signal unstable, please readjust antenna.");
   }
