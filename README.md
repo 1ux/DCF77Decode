@@ -91,15 +91,15 @@ void setup()
 
 void loop()
 {
-	ReceiveDCF77=receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
+  ReceiveDCF77=receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
 
-	if(ReceiveDCF77==SUCCESS)
+  if(ReceiveDCF77==SUCCESS)
   {
     if(decodeDCF77(bitArray,DCF77_STRING_SIZE,&time)==SUCCESS)
     {
       snprintf(buffer,sizeof(buffer),"It is now %02d:%02d o'clock",time.hour,time.minute);
       Serial.println(buffer);
-      snprintf(buffer,sizeof(buffer),"Today is %02d.%02d.20%02d\n",time.day,time.month,time.year);
+      snprintf(buffer,sizeof(buffer),"Today: %02d.%02d.20%02d\n",time.day,time.month,time.year);
       Serial.println(buffer);
       if(time.transmitter_fault!=SUCCESS)
         Serial.println("Either their signal is very noisy, or something is wrong in Germany.");
