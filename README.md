@@ -54,8 +54,8 @@ If you have good reception or a high quality receiver, you can connect it direct
 The following components can be seen in my example:
 
 - 1x Arduino Uno
-- 1x 100nF capacitor
-- 1x 100K resistor
+- 1x 1.5uF capacitor
+- 1x 10K resistor
 - 1x CD40106B Schmitt-Trigger Inverter IC (in circuit example see U1A and U1B)
 - 1x DCF-3850N-800 DCF77 receiver
 
