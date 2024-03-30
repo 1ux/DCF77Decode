@@ -81,7 +81,7 @@ The following components can be seen in my example:
 struct TimeStampDCF77 
 {
     //raw DCF77 values are always in two digits
-	uint8_t minute;
+    uint8_t minute;
     uint8_t hour;
     uint8_t day;
     uint8_t month;
