@@ -3,8 +3,8 @@
 # Basic DCF77 decode
 
 This Arduino library implements the fundamental functions of DCF77 signal decoding. The focus is on clean code and minimalism rather than large functionality. This set of functions supports the decoding of: Minute, Hour, Day, Month and Year.
-In addition, transmission errors are checked via the even parity and the 15 bit ("call bit") is queried to rule out problems with the transmitter.
-The blocking pulseIn() function, which is part of the standard Arduino library, is used for this. There are no further dependencies required and no external interrupts are used.
+It also checks for transmission errors via even parity and queries the 15 bit ("call bit") to rule out problems with the transmitter
+The blocking pulseIn() function, which is part of the standard Arduino library, is used for this. There are no other dependencies required and no external interrupts are used.
 
 This module demodulates the AM long wave signal from Germany and generates 59 square wave pulses with two different duty cycles.
 
@@ -15,9 +15,9 @@ This module demodulates the AM long wave signal from Germany and generates 59 sq
 </tr></table>
 </div>
 
-The 200 ms long pulse represents a 1 and the 100 ms long pulse represents a 0. You can see the pulses in the image on the left.
-In this way, 59 bits can be received within one minute, which always contain the current date and time. The 59 pulse is held low (except for leap seconds). You can see this in the picture on the right.
-This is how the end of a minute is indicated. If you interpret all 59 pulses as a bit string in this way, you can use the following image to decode the meaning of each bit.
+The 200 ms pulse represents a 1 and the 100 ms pulse represents a 0. You can see the pulses in the picture on the left.
+In this way, 59 bits can be received in one minute, always containing the current date and time. The 59th pulse is kept low (except for leap seconds). This is shown in the illustration on the right.
+It indicates the end of the minute. If you interpret all 59 pulses as a bit sequence, you can decode the meaning of the individual bits using the following figure.
 
 <p align="center">
     <img width="430" height="414" src="figures/dcf77kode2007.jpg">
@@ -34,8 +34,8 @@ Take a look at the following example, this is a complete DCF77 bit string:
                      Minutes Bits(21 to 27)
 ```
 
-The 7 relevant bits for minute decoding are marked. If you start counting from 0 non left to right, the area marked starts at the 21st digit.
-If you now relate the significance of the bits to the above graphic, the following calculation results:
+The 7 bits relevant for minute decoding are marked. If you start at 0 and count from left to right, the marked range begins at the 21st digit.
+If you now relate the meaning of the bits to the graphic above, the following calculation results:
 
 `(1*1)+(0*2)+(0*4)+(1*8)+(0*10)+(0*20)+(1*40)=49`
 
@@ -69,10 +69,10 @@ The following components can be seen in my example:
 
 1. copy the library into the project directory.
 2. Include the two headers: #include ".../basic_dcf77.h" and #include ".../DebugProject.h"
-3. If you do not want any error handling, it is sufficient to call the two functions: first receiveDCF77(...) to catch a DCF string and then decodeDCF77(...) to decode the string and write it to a TimeStampDCF77 variable.
+3. If you do not want any error handling it is sufficient to call the two functions: first receiveDCF77(...) to receive a DCF string and then decodeDCF77(...) to decode the string and write it into a TimeStampDCF77 variable.
 4. If something does not work, activate the error output on the serial interface in DebugProject.h by defining the line #define DEBUG_WATCHDOG.
 
-Here is an example of using the library with a little error handling, without debug output:
+Here is an example of using the library with error handling:
 
 ```C
 #include "src/basic_dcf77.h"
@@ -88,7 +88,7 @@ char buffer[40];      //A cache for a pretty and formatted text output
 void setup()
 {
   Serial.begin(115200);
-  delay(7000);    //Depending on hardware, it take some time until the DCF77 module is ready
+  delay(7000);    //Depending on your hardware, the module may take some time to start.
   setupDCF77(12); //set MCU digital input Pin 12 for DCF77
 }
 
@@ -102,7 +102,7 @@ void loop()
     {
       snprintf(buffer,sizeof(buffer),"It is now %02d:%02d o'clock",time.hour,time.minute);
       Serial.println(buffer);
-      snprintf(buffer,sizeof(buffer),"Today:%02d.%02d.20%02d\n",time.day,time.month,time.year);
+      snprintf(buffer,sizeof(buffer),"%02d.%02d.20%02d\n",time.day,time.month,time.year);
       Serial.println(buffer);
       if(time.transmitter_fault!=SUCCESS)
         Serial.println("Either their signal is noisy, or something is wrong in Germany.");
@@ -150,8 +150,8 @@ int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
 
 ## Debugging
 
-Occasionally there may be problems when operating the module for the first time. If you cannot help yourself with an oscilloscope, here are some tips:
-If you activate the debug output in DebugProject.h, you will see something like the following:
+Occasionally you may encounter problems when using the module for the first time. If you cannot help yourself with an oscilloscope, here are some tips:
+If you enable debug output in DebugProject.h, you will see something like the following:
 
 ```
  --=Debug Output Mode=--
@@ -178,9 +178,9 @@ Today is 29.3.2024
 
 The debug output should be updated every second. If the output is irregular, adjust the antenna until it is.
 If your microcontroller never records the bit string, you have a hardware problem.
-To find the entry to the DCF77 string, the library waits until the started minute is over. Then the bit string is recorded, which consists of the 59 bits mentioned above.
+To find the start of the DCF77 string, the library waits until the started minute has elapsed. Then it records the bit string, which consists of the 59 bits mentioned above.
 
-As a last resort, you can experiment with the following defines in the basic_dcf77.h, if the reception does not provide a plausible bit sequence:
+As a last resort, you can experiment with the following definitions in basic_dcf77.h if the reception does not provide a plausible bit sequence:
 
 ```C
 #define BIT_0_DURATION 130000
