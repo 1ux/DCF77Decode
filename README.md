@@ -64,8 +64,40 @@ The following components can be seen in my example:
     <img width="430" height="437" src="figures/circuit_example.jpg">
 </p>
 
+## Library overview
 
-## Usage & Documentation
+```C
+#ifndef basic_dcf77_h
+#define basic_dcf77_h
+
+#include <Arduino.h>
+
+#define BIT_0_DURATION 130000 //represents the maximum duration for 0.
+#define BIT_1_DURATION 240000 //represents the maximum duration for 1.
+#define min_BIT_0_DURATION 20000 //This value is no longer considered as 0.
+#define DCF77_STRING_SIZE 59  //This is the bit size of a DCF77 string.
+#define TIMEOUT_DURATION 1600000
+
+struct TimeStampDCF77 
+{
+    //raw DCF77 values are always in two digits
+	uint8_t minute;
+    uint8_t hour;
+    uint8_t day;
+    uint8_t month;
+    uint8_t year;
+    uint8_t fault;	//Indicates transmitter problems
+};
+
+//This function makes the port pin assignment.
+void setupDCF77(uint8_t pin);
+//Receives the demodulated DCF String and writes them into an int array.
+int receiveDCF77(uint8_t* bitArray, uint8_t size);
+//Extracts and interprets the date and time from the DCF string.
+int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
+```
+
+## Usage
 
 1. copy the library into the project directory.
 2. Include the two headers: #include ".../basic_dcf77.h" and #include ".../DebugProject.h"
@@ -113,39 +145,6 @@ void loop()
     Serial.println("\nDCF77 signal unstable, please wait or readjust antenna.");
 }
 
-```
-
-## Library overview
-
-```C
-#ifndef basic_dcf77_h
-#define basic_dcf77_h
-
-#include <Arduino.h>
-
-#define BIT_0_DURATION 130000 //represents the maximum duration for 0.
-#define BIT_1_DURATION 240000 //represents the maximum duration for 1.
-#define min_BIT_0_DURATION 20000 //This value is no longer considered as 0.
-#define DCF77_STRING_SIZE 59  //This is the bit size of a DCF77 string.
-#define TIMEOUT_DURATION 1600000
-
-struct TimeStampDCF77 
-{
-    //raw DCF77 values are always in two digits
-	uint8_t minute;
-    uint8_t hour;
-    uint8_t day;
-    uint8_t month;
-    uint8_t year;
-    uint8_t fault;	//Indicates transmitter problems
-};
-
-//This function makes the port pin assignment.
-void setupDCF77(uint8_t pin);
-//Receives the demodulated DCF String and writes them into an int array.
-int receiveDCF77(uint8_t* bitArray, uint8_t size);
-//Extracts and interprets the date and time from the DCF string.
-int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
 ```
 
 ## Debugging
