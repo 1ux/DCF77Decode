@@ -1,4 +1,4 @@
-*„Wenn die Realität nur eine Projektion ist, was passiert dann, wenn die Quelle, das Bewusstsein, abwesend ist?“
+*„Wenn die Realität nur eine Projektion ist, was passiert dann, wenn die Quelle, das Bewusstsein, abwesend ist?“*
 
 # Basic DCF77 decode
 
@@ -8,10 +8,12 @@ The blocking pulseIn() function, which is part of the standard Arduino library, 
 
 This module demodulates the AM long wave signal from Germany and generates 59 square wave pulses with two different duty cycles.
 
+<div align="center">
 <table><tr>
 <td> <img width="320" height="240" src="figures/short_and_long_DCF77_pulse.jpg"> </td>
 <td> <img width="320" height="240" src="figures/minute_marker.jpg"> </td>
 </tr></table>
+</div>
 
 The 200 ms long pulse represents a 1 and the 100 ms long pulse represents a 0. You can see the pulses in the image on the left.
 In this way, 59 bits can be received within one minute, which always contain the current date and time. The 59 pulse is held low (except for leap seconds). You can see this in the picture on the right.
@@ -25,9 +27,12 @@ Image source: [Physikalisch-Technische Bundesanstalt](https://www.ptb.de/cms/ptb
 
 Take a look at the following example, this is a complete DCF77 bit string:
 
-001110100000101000101<span style="color:red;">1001001</span>1100110110010110111000001001001
+00111010000010100010110010011100110110010110111000001001001
+                     ^^^^^^^
+                     |
+                     Minutes Bits(21 to 27)
 
-The 7 relevant bits for minute decoding are marked in red. If you start counting from 0 non left to right, the area marked in red starts at the 21st digit.
+The 7 relevant bits for minute decoding are marked. If you start counting from 0 non left to right, the area marked starts at the 21st digit.
 If you now relate the significance of the bits to the above graphic, the following calculation results: `(1*1)+(0*2)+(0*4)+(1*8)+(0*10)+(0*20)+(1*40)=49`
 Applying this principle to the decoding of the hour, you get 19:49
 An English documentation about DCF77 can be found [here](https://www.cyber-sciences.com/wp-content/uploads/2019/01/TN-103_DCF77.pdf).
@@ -75,29 +80,29 @@ int ReceiveDCF77;     //DCF77 receiving status
 
 char buffer[40];      //A cache for a pretty and formatted text output
 
-void setup() 
+void setup()
 {
   //If necessary, activate the debug output for DCF77 in DebugProject.h.
 	Serial.begin(115200);
-  delay(7000);    //Depending on hardware, it may take some time until the DCF77 module is ready
+  delay(7000);    //Depending on hardware, it take some time until the DCF77 module is ready
   setupDCF77(12); //set MCU digital input Pin 12 for DCF77
 }
 
 
-void loop() 
+void loop()
 {
-	ReceiveDCF77 = receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
-  
+	ReceiveDCF77=receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
+
 	if(ReceiveDCF77==SUCCESS)
   {
     if(decodeDCF77(bitArray,DCF77_STRING_SIZE,&time)==SUCCESS)
     {
-      snprintf(buffer, sizeof(buffer), "It is now %02d:%02d o'clock", time.hour, time.minute);
+      snprintf(buffer,sizeof(buffer),"It is now %02d:%02d o'clock",time.hour,time.minute);
       Serial.println(buffer);
-      snprintf(buffer, sizeof(buffer), "Today is %02d.%02d.20%02d\n", time.day, time.month, time.year);
+      snprintf(buffer,sizeof(buffer),"Today is %02d.%02d.20%02d\n",time.day,time.month,time.year);
       Serial.println(buffer);
       if(time.transmitter_fault!=SUCCESS)
-        Serial.println("Either their signal is very noisy, or something is wrong in Germany. (Probably both, but more likely 1.)");
+        Serial.println("Either their signal is very noisy, or something is wrong in Germany.");
     }
     else Serial.println("No doubt, signal unstable, please readjust antenna.");
   }
