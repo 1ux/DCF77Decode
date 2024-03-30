@@ -16,7 +16,7 @@ This module demodulates the AM long wave signal from Germany and generates 59 sq
 </div>
 
 The 200 ms pulse represents a 1 and the 100 ms pulse represents a 0. You can see the pulses in the picture on the left.
-In this way, 59 bits can be received in one minute, always containing the current date and time. The 59th pulse is kept low (except for leap seconds). This is shown in the illustration on the right.
+In this way, 59 bits can be received in one minute, always containing the current date and time. The 60th pulse is kept low (except for leap seconds). This is shown in the illustration on the right.
 It indicates the end of the minute. If you interpret all 59 pulses as a bit sequence, you can decode the meaning of the individual bits using the following figure.
 
 <p align="center">
