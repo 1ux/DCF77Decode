@@ -93,7 +93,7 @@ struct TimeStampDCF77
 void setupDCF77(uint8_t pin);
 //Receives the demodulated DCF String and writes them into an int array.
 int receiveDCF77(uint8_t* bitArray, uint8_t size);
-//Extracts and interprets the date and time from the DCF string.
+//Interprets the date/time from DCF string and writes them into TimeStampDCF77 struct.
 int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
 ```
 
