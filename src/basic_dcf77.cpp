@@ -142,6 +142,8 @@ int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time)
     time->year = BitScaleDCF77(bitArray + 50, 8);
     time->transmitter_fault = BitScaleDCF77(bitArray + 15, 1);
     time->A1 = BitScaleDCF77(bitArray + 16, 1);
+    time->CEST = BitScaleDCF77(bitArray + 17, 1);
+    time->CET = BitScaleDCF77(bitArray + 18, 1);
 
     if(checkParity(bitArray)==ERROR_INVALID_VALUE)
     {
@@ -152,7 +154,7 @@ int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time)
     }
 
     // Check if day, month, or year have invalid (00) values
-    if (time->day == 0 || time->month == 0 || time->year == 0) 
+    if (time->day == 0 || time->month == 0 || time->year == 0 || (time->CEST == time->CET))
     {
         #ifdef DEBUG_SERIAL
             Serial.println("\nInvalid date received.");
