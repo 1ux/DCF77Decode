@@ -13,6 +13,7 @@ and generates 58 square wave pulses with two different duty cycles.
 Serial Output:
 It is now XX:XX o'clock
 Today is XX.XX.20XX
+Weekday: XX
 */
 
 #include "src/basic_dcf77.h"
@@ -44,7 +45,7 @@ void loop()
     {
       snprintf(buffer, sizeof(buffer), "It is now %02d:%02d o'clock", time.hour, time.minute);
       Serial.println(buffer);
-      snprintf(buffer, sizeof(buffer), "Today is %02d.%02d.20%02d\n", time.day, time.month, time.year);
+      snprintf(buffer, sizeof(buffer), "Today is %02d.%02d.20%02d", time.day, time.month, time.year);
       Serial.println(buffer);
       snprintf(buffer, sizeof(buffer), "Weekday: %02d\n", time.weekday);
       Serial.println(buffer);

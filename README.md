@@ -134,7 +134,7 @@ void loop()
     {
       snprintf(buffer,sizeof(buffer),"It is now %02d:%02d o'clock",time.hour,time.minute);
       Serial.println(buffer);
-      snprintf(buffer,sizeof(buffer),"%02d.%02d.20%02d\n",time.day,time.month,time.year);
+      snprintf(buffer,sizeof(buffer),"%02d.%02d.20%02d",time.day,time.month,time.year);
       Serial.println(buffer);
       snprintf(buffer, sizeof(buffer), "Weekday: %02d\n", time.weekday);
       Serial.println(buffer);
@@ -177,6 +177,7 @@ Wait for new minute...
 
 It is now 19:49 o'clock
 Today is 29.3.2024
+Weekday: 06
 ```
 
 The debug output should be updated every second. If the output is irregular, adjust the antenna until it is.
