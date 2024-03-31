@@ -78,15 +78,17 @@ The following components can be seen in my example:
 #define DCF77_STRING_SIZE 59  //This is the bit size of a DCF77 string.
 #define TIMEOUT_DURATION 1600000
 
-struct TimeStampDCF77 
+struct TimeStampDCF77
 {
-    //raw DCF77 values are always in two digits
-    uint8_t minute;
+	//raw DCF77 values are always in two digits
+	uint8_t minute;
     uint8_t hour;
     uint8_t day;
+    uint8_t weekday;
     uint8_t month;
     uint8_t year;
-    uint8_t fault;	//Indicates transmitter problems
+    uint8_t A1; //Change from CET to CEST or vice-versa.
+    uint8_t transmitter_fault;	//Only relevant with very good signal
 };
 
 //This function makes the port pin assignment.
