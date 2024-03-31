@@ -13,6 +13,7 @@ and generates 58 square wave pulses with two different duty cycles.
 Serial Output:
 It is now XX:XX o'clock
 Today is XX.XX.20XX
+Weekday: XX
 */
 
 #include "src/basic_dcf77.h"
@@ -42,16 +43,17 @@ void loop()
   {
     if(decodeDCF77(bitArray,DCF77_STRING_SIZE,&time)==SUCCESS)
     {
-      snprintf(buffer, sizeof(buffer), "It is now %02d:%02d o'clock", time.hour, time.minute);
+      snprintf(buffer, sizeof(buffer), "It is now %02d:%02d o'clock %s", time.hour, time.minute, 
+      (time.CEST) ? "CEST" : "CET");
       Serial.println(buffer);
-      snprintf(buffer, sizeof(buffer), "Today is %02d.%02d.20%02d\n", time.day, time.month, time.year);
+      snprintf(buffer, sizeof(buffer), "Today is %02d.%02d.20%02d",time.day, time.month, time.year);
       Serial.println(buffer);
       snprintf(buffer, sizeof(buffer), "Weekday: %02d\n", time.weekday);
       Serial.println(buffer);
       if(time.transmitter_fault!=SUCCESS)
         Serial.println("Either their signal is very noisy, or something is wrong in Germany.");
       else if(time.A1)
-        Serial.println("Time change is coming up. (CET/CEST)");
+        Serial.println("CET/CEST Time change is coming up.");
     }
     else Serial.println("No doubt, signal unstable, please readjust antenna.");
   }
