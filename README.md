@@ -177,7 +177,7 @@ Wait for new minute...
 
 It is now 19:49 o'clock
 Today is 29.3.2024
-Weekday: 06
+Weekday: 05
 ```
 
 The debug output should be updated every second. If the output is irregular, adjust the antenna until it is.
