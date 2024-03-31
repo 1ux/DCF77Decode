@@ -2,11 +2,10 @@
 
 # Basic DCF77 decode
 
-This Arduino library implements the fundamental functions of DCF77 signal decoding. The focus is on clean code and minimalism rather than large functionality. This set of functions supports the decoding of: Minute, Hour, Day, Month and Year.
-It also checks for transmission errors via even parity and queries the 15 bit ("call bit") to rule out problems with the transmitter
-The blocking pulseIn() function, which is part of the standard Arduino library, is used for this. There are no other dependencies required and no external interrupts are used.
-
-This module demodulates the AM long wave signal from Germany and generates 59 square wave pulses with two different duty cycles.
+This Arduino library implements all bits publicly specified by the „Physikalisch-Technische Bundesanstalt“ that are within a 60 second bit stream of the time signal, with the exception of the leap second.
+It also checks for transmission errors via even parity and queries the 15 bit ("call bit") to rule out problems with the transmitter.
+The focus is on clean code, excellent documentation and ease of use of this library.
+The blocking pulseIn() function, which is part of the standard Arduino library, is used for this. There are no other dependencies required.
 
 <div align="center">
 <table><tr>
