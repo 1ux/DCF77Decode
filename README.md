@@ -2,7 +2,7 @@
 
 # Basic DCF77 decode
 
-This Arduino library implements all bits publicly specified by the „Physikalisch-Technische Bundesanstalt“ that are within a 60 second bit stream of the time signal, with the exception of the leap second.
+This Arduino library implements all bits publicly specified by the „[Physikalisch-Technische Bundesanstalt](https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-442/verbreitung-der-gesetzlichen-zeit/dcf77/zeitcode.html)“ that are within a 60 second bit stream of the time signal, with the exception of the leap second.
 It also checks for transmission errors via even parity and queries the 15 bit ("call bit") to rule out problems with the transmitter.
 The focus is on clean code, excellent documentation and ease of use of this library.
 The blocking pulseIn() function, which is part of the standard Arduino library, is used for this. There are no other dependencies required.
@@ -105,7 +105,35 @@ int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
 3. If you do not want any error handling it is sufficient to call the two functions: first receiveDCF77(...) to receive a DCF string and then decodeDCF77(...) to decode the string and write it into a TimeStampDCF77 variable.
 4. If something does not work, activate the error output on the serial interface in DebugProject.h by defining the line #define DEBUG_WATCHDOG.
 
-Here is an example of using the library with error handling:
+Here is a minimal example application:
+
+```C
+#include "src/basic_dcf77.h"
+#include "src/DebugProject.h"
+
+uint8_t bitArray[DCF77_STRING_SIZE]; //Memory location for received DCF77 bit string
+TimeStampDCF77 time;  //Data type for decoded DCF77 string
+
+void setup()
+{
+  Serial.begin(115200);
+  delay(7000);    //Depending on your hardware, the module may take some time to start.
+  setupDCF77(12); //set MCU digital input Pin 12 for DCF77
+}
+
+void loop()
+{
+  receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
+  decodeDCF77(bitArray,DCF77_STRING_SIZE,&time);
+  Serial.print(time.hour);
+  Serial.print(":");
+  Serial.println(time.minute);
+}
+
+```
+
+
+And here is an example of using the library with error handling:
 
 ```C
 #include "src/basic_dcf77.h"
