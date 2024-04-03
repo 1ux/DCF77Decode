@@ -58,13 +58,15 @@ The following components can be seen in my example:
 - 1x CD40106B Schmitt-Trigger Inverter IC (in circuit example see U1A and U1B)
 - 1x DCF-3850N-800 DCF77 receiver
 
-``
-C = \frac{1}{2 \pi f_c R}
-= \frac{1}{2 \pi \times 10 \text{ Hz} \times 10.000 \Omega}
-= \frac{1}{628318,53}
-\approx 1,59 \times 10^{-6} \text{ F}
-\approx 1,59 \mu\text{F}
-``
+To filter a little, I use a low-pass filter with a cut-off frequency of around 10 Hz:
+
+C = 1 / (2 * π * f_c * R)
+= 1 / (2 * π * 10 Hz * 10.000 Ω)
+= 1 / (628318,53)
+≈ 1,59 * 10^-6 F
+≈ 1,59 μF
+
+This is where the value for the resistor and capacitor comes from
 
 
 <p align="center">
