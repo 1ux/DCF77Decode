@@ -68,7 +68,7 @@ C = \frac{1}{2 \pi f_c R} \\
 \approx 1,59 \mu\text{F}
 $$
 
-This is where the value for the resistor and capacitor comes from
+This is where the value for the resistor and capacitor comes from. The Schmitt trigger is used to smooth the edges for the digital input.
 
 
 <p align="center">
