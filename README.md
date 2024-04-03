@@ -55,10 +55,10 @@ The following components can be seen in my example:
 - 1x Arduino Uno
 - 1x 1.5uF capacitor
 - 1x 10K resistor
-- 1x CD40106B Schmitt-Trigger Inverter IC (in circuit example see U1A and U1B)
+- 1x [CD40106B](https://www.ti.com/lit/ds/symlink/cd40106b.pdf?ts=1712053920606&ref_url=https%253A%252F%252Fwww.google.com%252F) Schmitt-Trigger Inverter IC (in circuit example see U1A and U1B)
 - 1x DCF-3850N-800 DCF77 receiver
 
-To filter a little, I use a low-pass filter with a cut-off frequency of around 10 Hz:
+To filter a little, I use a low-pass filter with a [cut-off frequency](https://de.wikipedia.org/wiki/Grenzfrequenz) of around 10 Hz:
 
 
 $$
