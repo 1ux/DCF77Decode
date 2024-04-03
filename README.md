@@ -239,9 +239,5 @@ For external debugging of DCF77 bit strings you can use my bash scripts under Li
 If you pass such a string to dcf77_string_decode.sh you will get the decoding on the command line. Since it is difficult to count bits to find out what value they have (1 or 0), you can use extract_dcf77_BIT.sh
 
 
-## Thanks to:
-
-- [Jana Weigel](https://janaweigel.wordpress.com/) for graphic design.
-
 ## Licence
 This program by Michael Krause is licenced under the terms of the GPLv3.
