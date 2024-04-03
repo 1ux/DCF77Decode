@@ -103,7 +103,7 @@ int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
 1. copy the library into the project directory.
 2. Include the two headers: #include ".../basic_dcf77.h" and #include ".../DebugProject.h"
 3. If you do not want any error handling it is sufficient to call the two functions: first receiveDCF77(...) to receive a DCF string and then decodeDCF77(...) to decode the string and write it into a TimeStampDCF77 variable.
-4. If something does not work, activate the error output on the serial interface in DebugProject.h by defining the line #define DEBUG_WATCHDOG.
+4. If something does not work, activate the error output on the serial interface in DebugProject.h by defining the line #define DEBUG_SERIAL.
 
 Here is a minimal example application:
 
@@ -204,7 +204,7 @@ Wait for new minute...
 Wait for new minute...
 00111010000010100010110010011100110110010110111000001001001
 
-It is now 19:49 o'clock
+It is now 19:49 o'clock CET
 Today is 29.3.2024
 Weekday: 05
 ```

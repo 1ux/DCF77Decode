@@ -1,0 +1,7 @@
+# Aktiviere die Erstellung von Datei-Scope-Tags
+--extras=+F
+# Unterstützte Sprachen: C und C++
+--languages=C,C++
+# Behandle .ino als C++
+--langmap=C++:+.ino
+# Aufruf von ctags: „ctags -R --options=config.ctags   -o Project.tags“

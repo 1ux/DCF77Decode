@@ -1,0 +1,51 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/lux/ArduinoDCF77Decode/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	/p5.9.20220828.0/
+A1	src/basic_dcf77.h	/^    uint8_t A1; \/\/Change from CET to CEST or vice-versa.$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
+BIT_0_DURATION	src/basic_dcf77.h	/^#define BIT_0_DURATION /;"	d
+BIT_1_DURATION	src/basic_dcf77.h	/^#define BIT_1_DURATION /;"	d
+BitScaleDCF77	src/basic_dcf77.cpp	/^static int BitScaleDCF77(uint8_t *bitstring, uint8_t length) $/;"	f	typeref:typename:int	file:
+CEST	src/basic_dcf77.h	/^    uint8_t CEST;$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
+CET	src/basic_dcf77.h	/^    uint8_t CET;$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
+DCF77_PIN	src/basic_dcf77.cpp	/^uint8_t DCF77_PIN=13;$/;"	v	typeref:typename:uint8_t
+DCF77_STRING_SIZE	src/basic_dcf77.h	/^#define DCF77_STRING_SIZE /;"	d
+DEBUG_PROJECT_H	src/DebugProject.h	/^#define DEBUG_PROJECT_H$/;"	d
+DEBUG_SERIAL	src/DebugProject.h	/^	#define DEBUG_SERIAL /;"	d
+ERROR_INVALID_VALUE	src/DebugProject.h	/^	#define ERROR_INVALID_VALUE /;"	d
+ERROR_TIMEOUT	src/DebugProject.h	/^	#define ERROR_TIMEOUT /;"	d
+ReceiveDCF77	ArduinoDCF77Decode.ino	/^int ReceiveDCF77;     \/\/DCF77 receiving status$/;"	v	typeref:typename:int
+ReceiveDCF77	examples/ArduinoDCF77Decode.ino	/^int ReceiveDCF77;     \/\/DCF77 receiving status$/;"	v	typeref:typename:int
+SUCCESS	src/DebugProject.h	/^	#define SUCCESS /;"	d
+TIMEOUT_DURATION	src/basic_dcf77.h	/^#define TIMEOUT_DURATION /;"	d
+TimeStampDCF77	src/basic_dcf77.h	/^struct TimeStampDCF77 $/;"	s
+basic_dcf77_h	src/basic_dcf77.h	/^#define basic_dcf77_h$/;"	d
+bitArray	ArduinoDCF77Decode.ino	/^uint8_t bitArray[DCF77_STRING_SIZE]; \/\/Memory location for received DCF77 bit string$/;"	v	typeref:typename:uint8_t[]
+bitArray	examples/ArduinoDCF77Decode.ino	/^uint8_t bitArray[DCF77_STRING_SIZE]; \/\/Memory location for received DCF77 bit string$/;"	v	typeref:typename:uint8_t[]
+buffer	ArduinoDCF77Decode.ino	/^char buffer[40];      \/\/A cache for a pretty and formatted text output$/;"	v	typeref:typename:char[40]
+buffer	examples/ArduinoDCF77Decode.ino	/^char buffer[40];      \/\/A cache for a pretty and formatted text output$/;"	v	typeref:typename:char[40]
+checkParity	src/basic_dcf77.cpp	/^static int checkParity(uint8_t *bitArray)$/;"	f	typeref:typename:int	file:
+day	src/basic_dcf77.h	/^    uint8_t day;$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
+decodeDCF77	src/basic_dcf77.cpp	/^int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time) $/;"	f	typeref:typename:int
+hour	src/basic_dcf77.h	/^    uint8_t hour;$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
+loop	ArduinoDCF77Decode.ino	/^void loop() $/;"	f	typeref:typename:void
+loop	examples/ArduinoDCF77Decode.ino	/^void loop() $/;"	f	typeref:typename:void
+min_BIT_0_DURATION	src/basic_dcf77.h	/^#define min_BIT_0_DURATION /;"	d
+minute	src/basic_dcf77.h	/^    uint8_t minute;$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
+month	src/basic_dcf77.h	/^    uint8_t month;$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
+receiveDCF77	src/basic_dcf77.cpp	/^int receiveDCF77(uint8_t* bitArray, uint8_t size) $/;"	f	typeref:typename:int
+setup	ArduinoDCF77Decode.ino	/^void setup()$/;"	f	typeref:typename:void
+setup	examples/ArduinoDCF77Decode.ino	/^void setup()$/;"	f	typeref:typename:void
+setupDCF77	src/basic_dcf77.cpp	/^void setupDCF77(uint8_t pin)$/;"	f	typeref:typename:void
+time	ArduinoDCF77Decode.ino	/^TimeStampDCF77 time;  \/\/Data type for decoded DCF77 string$/;"	v	typeref:typename:TimeStampDCF77
+time	examples/ArduinoDCF77Decode.ino	/^TimeStampDCF77 time;  \/\/Data type for decoded DCF77 string$/;"	v	typeref:typename:TimeStampDCF77
+transmitter_fault	src/basic_dcf77.h	/^    int8_t transmitter_fault;	\/\/Only relevant with very good signal$/;"	m	struct:TimeStampDCF77	typeref:typename:int8_t
+weekday	src/basic_dcf77.h	/^    uint8_t weekday;$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
+year	src/basic_dcf77.h	/^    uint8_t year;$/;"	m	struct:TimeStampDCF77	typeref:typename:uint8_t
