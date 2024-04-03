@@ -58,13 +58,11 @@ The following components can be seen in my example:
 - 1x CD40106B Schmitt-Trigger Inverter IC (in circuit example see U1A and U1B)
 - 1x DCF-3850N-800 DCF77 receiver
 
-```latex
 C = \frac{1}{2 \pi f_c R}
-= \frac{1}{2 \pi \cdot 10,\text{Hz} \cdot 10.000,\Omega}
+= \frac{1}{2 \pi \times 10 \text{ Hz} \times 10.000 \Omega}
 = \frac{1}{628318,53}
-\approx 1,59 \cdot 10^{-6},\text{F}
-\approx 1,59,\mu\text{F}
-```
+\approx 1,59 \times 10^{-6} \text{ F}
+\approx 1,59 \mu\text{F}
 
 
 <p align="center">
