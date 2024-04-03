@@ -42,6 +42,7 @@ void setupDCF77(uint8_t pin);
 //Receives the demodulated DCF signals and writes them into an int array with the size DCF77_STRING_SIZE, which represents the bits of one minute.
 int receiveDCF77(uint8_t* bitArray, uint8_t size);
 //Extracts and interprets the date and time from the binary DCF string and writes them into a TimeStampDCF77 structure.
+//Parity is evaluated via return value: SUCCESS/ERROR_INVALID_VALUE.
 int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
 
 
