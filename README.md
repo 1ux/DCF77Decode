@@ -60,7 +60,7 @@ The following components can be seen in my example:
 
 To filter a little, I use a low-pass filter with a cut-off frequency of around 10 Hz:
 
-```
+
 $$
 C = \frac{1}{{2 \pi f_c R}}
 = \frac{1}{{2 \pi \cdot 10 \, \text{Hz} \cdot 10.000 \, \Omega}}
@@ -68,7 +68,6 @@ C = \frac{1}{{2 \pi f_c R}}
 \approx 1,59 \times 10^{-6} \, \text{F}
 \approx 1,59 \, \mu\text{F}
 $$
-```
 
 This is where the value for the resistor and capacitor comes from
 
