@@ -1,23 +1,24 @@
 /*
 Library overview:
 
-This Arduino library implements the funtamental functionality of DCF77.
-The focus is on clean code and minimalism rather than large functionality.
-This set of functions supports the decoding of: Minute, Hour, Day, Month and Year.
-In addition, transmission errors are checked via the even parity and the 15 bit ("call bit") 
-is queried to rule out problems with the transmitter.
+This Arduino library implements all bits publicly specified by the „Physikalisch-Technische Bundesanstalt“ 
+that are within a 60 second bit stream of the time signal, with the exception of the leap second. 
+It also checks for transmission errors via even parity and queries the 15 bit ("call bit") to rule out problems with the transmitter. 
+The focus is on clean code, excellent documentation and ease of use of this library. 
+The blocking pulseIn() function, which is part of the standard Arduino library, 
+is used for this. There are no other dependencies required.
 A DCF77 receiver module is required. 
 This module demodulates the AM long wave signal from Germany 
-and generates 58 square wave pulses with two different duty cycles.
+and generates 59 square wave pulses with two different duty cycles.
 
 Serial Output:
-It is now XX:XX o'clock
+It is now XX:XX o'clock CET
 Today is XX.XX.20XX
 Weekday: XX
 */
 
-#include "src/basic_dcf77.h"
-#include "src/DebugProject.h"
+#include <basic_dcf77.h>
+#include <DebugProject.h>
 
 
 uint8_t bitArray[DCF77_STRING_SIZE]; //Memory location for received DCF77 bit string
@@ -37,9 +38,9 @@ void setup()
 
 void loop() 
 {
-	ReceiveDCF77 = receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
+  ReceiveDCF77 = receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
   
-	if(ReceiveDCF77==SUCCESS)
+  if(ReceiveDCF77==SUCCESS)
   {
     if(decodeDCF77(bitArray,DCF77_STRING_SIZE,&time)==SUCCESS)
     {

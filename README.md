@@ -114,16 +114,11 @@ int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
 
 ## Usage
 
-1. copy the library into the project directory.
-2. Include the two headers: #include ".../basic_dcf77.h" and #include ".../DebugProject.h"
-3. If you do not want any error handling it is sufficient to call the two functions: first receiveDCF77(...) to receive a DCF string and then decodeDCF77(...) to decode the string and write it into a TimeStampDCF77 variable.
-4. If something does not work, activate the error output on the serial interface in DebugProject.h by defining the line #define DEBUG_SERIAL.
-
 Here is a minimal example application:
 
 ```C
-#include "src/basic_dcf77.h"
-#include "src/DebugProject.h"
+#include <basic_dcf77.h>
+#include <DebugProject.h>
 
 uint8_t bitArray[DCF77_STRING_SIZE]; //Memory location for received DCF77 bit string
 TimeStampDCF77 time;  //Data type for decoded DCF77 string
@@ -150,8 +145,8 @@ void loop()
 And here is an example of using the library with error handling:
 
 ```C
-#include "src/basic_dcf77.h"
-#include "src/DebugProject.h"
+#include <basic_dcf77.h>
+#include <DebugProject.h>
 
 
 uint8_t bitArray[DCF77_STRING_SIZE]; //Memory location for received DCF77 bit string
@@ -193,6 +188,9 @@ void loop()
 }
 
 ```
+
+Please note:
+Serial debug output is activated by default. You can save resources by deactivating the output by commenting out the symbolic constant "DEBUG_SERIAL" in DebugProject.h. This ensures that parts of the code are not compiled (conditional compilation).
 
 ## Debugging
 
@@ -238,6 +236,9 @@ As a last resort, you can experiment with the following definitions in basic_dcf
 For external debugging of DCF77 bit strings you can use my bash scripts under Linux/Unix in the ../examples folder.<br>
 If you pass such a string to dcf77_string_decode.sh you will get the decoding on the command line. Since it is difficult to count bits to find out what value they have (1 or 0), you can use extract_dcf77_BIT.sh
 
+## Thanks to
+[wollewald](https://github.com/wollewald) for source code organisation and ideas for future work
+[klemens](https://github.com/klemens) for reviewing the source code
 
 ## Licence
 This program by Michael Krause is licenced under the terms of the GPLv3.
