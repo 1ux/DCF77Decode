@@ -80,36 +80,36 @@ Aus diesen Überlegungen ergibt sich der Wert für den Widerstand R1 und den Kon
 
 #include <Arduino.h>
 
-#define BIT_0_DURATION 130000 //represents the maximum duration for 0.
-#define BIT_1_DURATION 240000 //represents the maximum duration for 1.
-#define min_BIT_0_DURATION 20000 //This value is no longer considered as 0.
-#define DCF77_STRING_SIZE 59  //This is the bit size of a DCF77 string.
-#define TIMEOUT_DURATION 1600000 //Represents the end of a DCF77 BitString
+#define BIT_0_DURATION 130000 //Maximale Signallaufzeit für Interpretation einer 0
+#define BIT_1_DURATION 240000 //Maximale Signallaufzeit für Interpretation einer 1
+#define min_BIT_0_DURATION 20000 //Alles Kleinere wird als Störimpuls gewertet
+#define DCF77_STRING_SIZE 59  //Größe der DCF77-Zeichenkette
+#define TIMEOUT_DURATION 1600000 //Repräsentiert das Ende eines DCF77-Strings
 
 struct TimeStampDCF77
 {
-    //raw DCF77 values are always in two digits
+    //DCF77-Datumswerte sind immer zweistellig
     uint8_t minute;
     uint8_t hour;
     uint8_t day;
     uint8_t weekday;
     uint8_t month;
     uint8_t year;
-    uint8_t A1; //Change from CET to CEST or vice-versa.
-    uint8_t transmitter_fault;	//Only relevant with very good signal
+    uint8_t A1; ///Wechsel von Sommer- auf Winterzeit und umgekehrt
+    uint8_t transmitter_fault;//Nur zu beachten bei sehr gutem Empfang
 };
 
-//This function makes the port pin assignment.
+//Pinzuweisung zwischen MCU und DCF77-Modul
 void setupDCF77(uint8_t pin);
-//Receives the demodulated DCF String and writes them into an int array.
+//Startet den Empfang eines demodulierten DCF77-Strings
 int receiveDCF77(uint8_t* bitArray, uint8_t size);
-//Interprets the date/time from DCF string and writes them into TimeStampDCF77 struct.
-//Parity is evaluated via return value: SUCCESS/ERROR_INVALID_VALUE.
+//Interpretiert den DCF77-String und schreibt die dekodierten Werte in eine Struktur.
+//Auswertung der Parität erfolgt über den Rückgabewert: SUCCESS/ERROR_INVALID_VALUE.
 int decodeDCF77(uint8_t *bitArray, uint8_t size, TimeStampDCF77 *time);
 
 ```
 
-## Usage
+## Anwendung
 
 Hier ist eine minimale Beispielanwendung:
 
@@ -117,20 +117,20 @@ Hier ist eine minimale Beispielanwendung:
 #include <basic_dcf77.h>
 #include <DebugProject.h>
 
-uint8_t bitArray[DCF77_STRING_SIZE]; //Memory location for received DCF77 bit string
-TimeStampDCF77 time;  //Data type for decoded DCF77 string
+uint8_t bitArray[DCF77_STRING_SIZE]; //Speicherplatz für den rohen DCF77-Bitstring
+TimeStampDCF77 time;  //Variable zum Zwischenspeichern des dekodierten Signals
 
 void setup()
 {
   Serial.begin(115200);
-  delay(7000);    //Depending on your hardware, the module may take some time to start.
-  setupDCF77(12); //set MCU digital input Pin 12 for DCF77
+  delay(7000);    //Der Start des DCF77-Moduls kann etwas dauern.
+  setupDCF77(12); //Setzt den input Pin auf 12. Hier ist das DCF Modul angeschlossen
 }
 
 void loop()
 {
-  receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
-  decodeDCF77(bitArray,DCF77_STRING_SIZE,&time);
+  receiveDCF77(bitArray,DCF77_STRING_SIZE); //Startet den rohen DCF77-Empfang
+  decodeDCF77(bitArray,DCF77_STRING_SIZE,&time); //Dekodierung der Binärwerte
   Serial.print(time.hour);
   Serial.print(":");
   Serial.println(time.minute);
@@ -146,22 +146,22 @@ Und hier ist ein Beispiel für die Verwendung der Bibliothek mit Fehlerbehandlun
 #include <DebugProject.h>
 
 
-uint8_t bitArray[DCF77_STRING_SIZE]; //Memory location for received DCF77 bit string
-TimeStampDCF77 time;  //Data type for decoded DCF77 string
-int ReceiveDCF77;     //DCF77 receiving status
+uint8_t bitArray[DCF77_STRING_SIZE];
+TimeStampDCF77 time;
+int ReceiveDCF77;
 
-char buffer[40];      //A cache for a pretty and formatted text output
+char buffer[40];
 
 void setup()
 {
   Serial.begin(115200);
-  delay(7000);    //Depending on your hardware, the module may take some time to start.
-  setupDCF77(12); //set MCU digital input Pin 12 for DCF77
+  delay(7000);
+  setupDCF77(12);
 }
 
 void loop()
 {
-  ReceiveDCF77=receiveDCF77(bitArray,DCF77_STRING_SIZE); //Start receiving a DCF77 string
+  ReceiveDCF77=receiveDCF77(bitArray,DCF77_STRING_SIZE); //Startet den DCF77-Empfang
 
   if(ReceiveDCF77==SUCCESS)
   {
@@ -241,7 +241,7 @@ Wenn der Mikrocontroller niemals eine Bitfolge aufzeichnet, kann dies zwei Ursac
 - TIMEOUT_DURATION ist zu hoch und erkennt nicht das Ende der DCF77-Bitfolge.
 - Es liegt ein Hardware-Problem vor.
 
-Für die externe Debuggung von DCF77-Bitfolgen können Sie meine Bash-Skripte unter Linux/Unix im Ordner ../examples verwenden.
+Für das externe Debuggung von DCF77-Bitfolgen können Sie meine Bash-Skripte unter Linux/Unix im Ordner ../examples verwenden.
 Wenn Sie einer DCF77-Bitfolge an dcf77_string_decode.sh übergeben, erhalten Sie die Decodierung auf der Kommandozeile. Da es müsig ist, Bits zu zählen, um herauszufinden, welchen Wert sie haben (1 oder 0), können Sie extract_dcf77_BIT.sh verwenden.
 
 ## Danke an:
