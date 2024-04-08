@@ -1,6 +1,6 @@
 *„Wenn die Realität nur eine Projektion ist, was passiert dann, wenn die Quelle, das Bewusstsein, abwesend ist?“*
 <br>
-[Switch to the English version](https://github.com/1ux/DCF77Decode)
+:gb:[Switch to the English version](https://github.com/1ux/DCF77Decode)
 
 # Basic DCF77 decode
 Diese Arduino-Bibliothek implementiert alle von der „[Physikalisch-Technischen Bundesanstalt](https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-442/verbreitung-der-gesetzlichen-zeit/dcf77/zeitcode.html)“ öffentlich spezifizierten Bits, die innerhalb eines 60-Sekunden-Bitstroms des Zeitsignals liegen, mit Ausnahme der Schaltsekunde.
