@@ -1,9 +1,8 @@
 *„Wenn die Realität nur eine Projektion ist, was passiert dann, wenn die Quelle, das Bewusstsein, abwesend ist?“*
-
-# Basic DCF77 decode
 <br>
 [Switch to the English version](https://github.com/1ux/DCF77Decode)
-<br>
+
+# Basic DCF77 decode
 Diese Arduino-Bibliothek implementiert alle von der „[Physikalisch-Technischen Bundesanstalt](https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-442/verbreitung-der-gesetzlichen-zeit/dcf77/zeitcode.html)“ öffentlich spezifizierten Bits, die innerhalb eines 60-Sekunden-Bitstroms des Zeitsignals liegen, mit Ausnahme der Schaltsekunde.
 Es prüft auch auf Übertragungsfehler durch gerade Parität und fragt das 15-Bit ("call bit") ab, um Probleme mit dem Sender auszuschließen.
 Der Schwerpunkt liegt auf sauberem Code, hervorragender Dokumentation und einfacher Benutzung dieser Bibliothek.
