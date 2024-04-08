@@ -222,16 +222,27 @@ Weekday: 05
 ```
 
 The debug output should be updated every second. If the output is irregular, adjust the antenna until it is.
-If your microcontroller never records the bit string, you have a hardware problem.
-To find the start of the DCF77 string, the library waits until the started minute has elapsed. Then it records the bit string, which consists of the 59 bits mentioned above.
+To find the start of the DCF77 string, the library waits until the started minute has elapsed. Then it records the bit string, which consists of the 59 bits mentioned above.<br>
 
-As a last resort, you can experiment with the following definitions in basic_dcf77.h if the reception does not provide a plausible bit sequence:
+As each microcontroller type reacts differently to the pulseIn() function at the heart of this library, there is a high variance in the measurement of pulse propagation time. 
+
+You should experiment with the following definitions within basic_dcf77.h:
 
 ```C
-#define BIT_0_DURATION 130000
-#define BIT_1_DURATION 240000
-#define min_BIT_0_DURATION 20000
+#define BIT_0_DURATION 100000 //maximum duration (in μs) to interpret a 0
+#define BIT_1_DURATION 200000 //maximum duration (in μs) to interpret a 1
+#define min_BIT_0_DURATION 20000 //ignores short-term bounces
+#define TIMEOUT_DURATION 1000000 //Represents the end of a DCF77 BitString
 ```
+
+These values represent the optimum, but your microcontroller usually needs a little less or a little more time. 
+If you don't want to guess, activate the extended debug output in the implementation file (see basic_dcf77.cpp) at the end of the receiveDCF77(...) function.<br>
+
+
+If the microcontroller never records a bit string, this can have two causes:
+
+- TIMEOUT_DURATION is too high and does not recognise the end of the DCF77 bit string.
+- There is a hardware problem.<br>
 
 For external debugging of DCF77 bit strings you can use my bash scripts under Linux/Unix in the ../examples folder.<br>
 If you pass such a string to dcf77_string_decode.sh you will get the decoding on the command line. Since it is difficult to count bits to find out what value they have (1 or 0), you can use extract_dcf77_BIT.sh
