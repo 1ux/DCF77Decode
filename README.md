@@ -1,7 +1,9 @@
 *„Wenn die Realität nur eine Projektion ist, was passiert dann, wenn die Quelle, das Bewusstsein, abwesend ist?“*
 
 # Basic DCF77 decode
-
+<br>
+[Zur deutschen Version wechseln](https://github.com/1ux/DCF77Decode)
+<br>
 This Arduino library implements all bits publicly specified by the „[Physikalisch-Technische Bundesanstalt](https://www.ptb.de/cms/ptb/fachabteilungen/abt4/fb-44/ag-442/verbreitung-der-gesetzlichen-zeit/dcf77/zeitcode.html)“ that are within a 60 second bit stream of the time signal, with the exception of the leap second.
 It also checks for transmission errors via even parity and queries the 15 bit ("call bit") to rule out problems with the transmitter.
 The focus is on clean code, excellent documentation and ease of use of this library.
@@ -38,7 +40,7 @@ If you now relate the meaning of the bits to the graphic above, the following ca
 
 `(1*1)+(0*2)+(0*4)+(1*8)+(0*10)+(0*20)+(1*40)=49`
 
-Applying this principle to the decoding of the hour, you get 19:49
+If you apply this principle to the decoding of the hour, you get the time: 19:49.
 
 
 An English documentation about DCF77 can be found [here](https://www.cyber-sciences.com/wp-content/uploads/2019/01/TN-103_DCF77.pdf).
