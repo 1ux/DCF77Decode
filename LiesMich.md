@@ -1,5 +1,6 @@
 *„Wenn die Realität nur eine Projektion ist, was passiert dann, wenn die Quelle, das Bewusstsein, abwesend ist?“*
 <br>
+<br>
 :gb:[Switch to the English version](https://github.com/1ux/DCF77Decode)
 
 # Basic DCF77 decode
@@ -95,7 +96,9 @@ struct TimeStampDCF77
     uint8_t weekday;
     uint8_t month;
     uint8_t year;
-    uint8_t A1; ///Wechsel von Sommer- auf Winterzeit und umgekehrt
+    uint8_t A1; ///Bevorstehender Wechsel von MEZ zu MESZ oder umgekehrt.
+    uint8_t CEST; //prüfe, ob es Sommerzeit ist
+    uint8_t CET; //prüfe, ob es Winterzeit ist
     uint8_t transmitter_fault;//Nur zu beachten bei sehr gutem Empfang
 };
 
