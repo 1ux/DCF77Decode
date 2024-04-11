@@ -74,7 +74,7 @@ This is where the value for the resistor and capacitor comes from. The Schmitt t
 
 
 <p align="center">
-    <img width="430" height="437" src="figures/circuit_example.jpg">
+    <img width="430" height="437" src="figures/circuit_example.svg">
 </p>
 
 ## Library overview
