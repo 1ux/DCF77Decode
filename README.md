@@ -74,7 +74,7 @@ This is where the value for the resistor and capacitor comes from. The Schmitt t
 
 
 <p align="center">
-    <img width="430" height="437" src="figures/circuit_example.svg">
+    <img width="480" height="487" src="figures/circuit_example.svg">
 </p>
 
 ## Library overview
@@ -254,6 +254,7 @@ If you pass such a string to dcf77_string_decode.sh you will get the decoding on
 ## Thanks to
 [wollewald](https://github.com/wollewald) for source code organisation and ideas for future work<br>
 [klemens](https://github.com/klemens) for reviewing the source code<br>
+[Jana Weigel](https://janaweigel.wordpress.com/) for graphic design.<br>
 
 ## Licence
 This program by Michael Krause is licenced under the terms of the GPLv3.

@@ -70,7 +70,7 @@ Aus diesen Überlegungen ergibt sich der Wert für den Widerstand R1 und den Kon
 
 
 <p align="center">
-    <img width="430" height="437" src="figures/circuit_example.jpg">
+    <img width="480" height="487" src="figures/circuit_example.svg">
 </p>
 
 ## Überblick über die Bibliothek
@@ -250,6 +250,7 @@ Wenn Sie einer DCF77-Bitfolge an dcf77_string_decode.sh übergeben, erhalten Sie
 ## Danke an:
 [wollewald](https://github.com/wollewald) für die Quellcode-Organisation und Ideen für zukünftige Arbeiten<br>
 [klemens](https://github.com/klemens) für die Durchsicht des Quellcodes<br>
+[Jana Weigel](https://janaweigel.wordpress.com/) for graphic design.<br>
 
 ## Lizenz
 Dieses Programm wurde von Michael Krause erstellt und unter der GPLv3 veröffentlicht.
